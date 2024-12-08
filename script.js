@@ -4,7 +4,7 @@ async function fetchData() {
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
-      throw new Error('Error fetching data: ${response.status}');
+      throw new Error(`Error fetching data: ${response.status}`);
     }
     
     const data = await response.json();
@@ -25,12 +25,13 @@ function populateTable(records) {
     const fields=record.fields || {};
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td>${record.fields.nationality || 'N/A'}</td>
-      <td>${record.fields.colleges || 'N/A'}</td>
+      <td>${record.fields.Nationality || 'N/A'}</td>
+      <td>${record.fields.Colleges || 'N/A'}</td>
       <td>${record.fields.the_programs || 'N/A'}</td>
-      <td>${record.fields.student_count || 'N/A'}</td>
+      <td>${record.fields.Student_Count || 'N/A'}</td>
     `;
     tableBody.appendChild(row);
   });
+
 }
 fetchData();
