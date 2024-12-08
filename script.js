@@ -12,3 +12,16 @@ async function fetchData() {
     console.error(error);
   }
 }
+function populateTable(records) {
+  const tableBody = document.querySelector('#data-table tbody');
+  records.forEach(record => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${record.fields.nationality || 'N/A'}</td>
+      <td>${record.fields.colleges || 'N/A'}</td>
+      <td>${record.fields.the_programs || 'N/A'}</td>
+      <td>${record.fields.student_count || 'N/A'}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
