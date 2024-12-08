@@ -27,7 +27,7 @@ fetch(url)
             // Create the table body to hold the data rows
             const tbody = document.createElement('tbody');
 
-           data.results.sort((a, b)=> (a.year || 0)- (b.year||0 ));
+           
             data.results.forEach(student => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
