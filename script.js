@@ -4,17 +4,25 @@ async function fetchData() {
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
-      throw new Error(Error fetching data: ${response.status});
+      throw new Error('Error fetching data: ${response.status}');
     }
     const data = await response.json();
+    if (data.records && Array.isArray(data.records)){
+
+    
     populateTable(data.records);
+    } else {
+      console.error("Invalid data structure: 'records' is missing or not an array.", data );
+    }
   } catch (error) {
     console.error(error);
   }
 }
 function populateTable(records) {
   const tableBody = document.querySelector('#data-table tbody');
+  tableBody.innerHTML='';
   records.forEach(record => {
+    const fields=record.fields || {};
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${record.fields.nationality || 'N/A'}</td>
