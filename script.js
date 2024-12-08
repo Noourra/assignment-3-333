@@ -1,4 +1,4 @@
-const apiUrl = 'https://data.gov.bh/api/explore/v2.1/catalog/datasets/01-statistics-of-students-nationalities_updated/records?where=colleges%20like%20%22IT%22%20AND%20the_programs%20like%20%22bachelor%22&limit=100';
+const apiUrl = 'https://data.gov.bh/api/explore/v2.1/catalog/datasets/01-statistics-of-students-nationalities_updated/records?limit=100';
 
 async function fetchData() {
   try {
@@ -8,16 +8,14 @@ async function fetchData() {
     }
     
     const data = await response.json();
-    console.log("API Response: ", data);
-    if (data.records && Array.isArray(data.records)){
-
-    
+    console.log("Full API Response: ", data);
+    if (data && data.records && Array.isArray(data.records)){
     populateTable(data.records);
     } else {
       console.error("Invalid data structure: 'records' is missing or not an array.", data );
     }
   } catch (error) {
-    console.error(error);
+    console.error("An error occurred : ", error);
   }
 }
 function populateTable(records) {
