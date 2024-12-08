@@ -25,3 +25,4 @@ function populateTable(records) {
     tableBody.appendChild(row);
   });
 }
+fetchData();
